@@ -94,8 +94,27 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Poppins', sans-serif;
+  }
+
+  /* Hide native number input spinner buttons */
+  .number-input-no-spinner::-webkit-inner-spin-button,
+  .number-input-no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .number-input-no-spinner {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Responsive grid utilities */
+@media (max-width: 768px) {
+  .grid[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
   }
 }
