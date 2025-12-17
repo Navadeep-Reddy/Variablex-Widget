@@ -1,0 +1,83 @@
+{
+    "id": "demo-calc",
+    "name": "Loan Calculator Demo",
+    "description": "A simple loan calculator demonstration",
+    "layout": [
+        {
+            "id": "input-section-1",
+            "type": "input",
+            "name": "Loan Details",
+            "rows": [
+                {
+                    "id": "row-1",
+                    "columns": [
+                        {
+                            "id": "col-1",
+                            "components": [
+                                "loan-amount",
+                                "interest-rate"
+                            ]
+                        },
+                        {
+                            "id": "col-2",
+                            "components": [
+                                "loan-term"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "result-section-1",
+            "type": "result",
+            "name": "Monthly Payment",
+            "content": "Your monthly payment will be: ${monthly_payment}"
+        }
+    ],
+    "components": [
+        {
+            "id": "loan-amount",
+            "type": "numberInput",
+            "label": "Loan Amount",
+            "variableName": "principal",
+            "min": 1000,
+            "max": 1000000,
+            "step": 1000,
+            "defaultValue": 100000,
+            "prefix": "$",
+            "suffix": ""
+        },
+        {
+            "id": "interest-rate",
+            "type": "slider",
+            "label": "Interest Rate",
+            "variableName": "rate",
+            "min": 0,
+            "max": 20,
+            "step": 0.1,
+            "defaultValue": 5,
+            "prefix": "",
+            "suffix": "%"
+        },
+        {
+            "id": "loan-term",
+            "type": "slider",
+            "label": "Loan Term",
+            "variableName": "years",
+            "min": 1,
+            "max": 30,
+            "step": 1,
+            "defaultValue": 15,
+            "prefix": "",
+            "suffix": " years"
+        }
+    ],
+    "formulas": [
+        {
+            "id": "monthly-payment",
+            "name": "monthly_payment",
+            "expression": "(principal * (rate / 100 / 12) * (1 + rate / 100 / 12) ^ (years * 12)) / ((1 + rate / 100 / 12) ^ (years * 12) - 1)"
+        }
+    ]
+}
