@@ -47,7 +47,7 @@ export function CalculatorWidget({
                 setError(null);
                 try {
                     const response = await fetch(
-                        `${apiBaseUrl}/api/v1/users/${userId}/configurations/${configurationId}`
+                        `${apiBaseUrl}/api/v1/embed/${configurationId}`
                     );
 
                     if (!response.ok) {
@@ -143,7 +143,7 @@ export function CalculatorWidget({
     }
 
     return (
-        <div className="h-full overflow-y-auto bg-background">
+        <div className="h-full overflow-y-auto bg-transparent">
             <div className="max-w-4xl mx-auto p-8 space-y-6">
                 {layout.map((section: any) => {
                     if (section.type === 'input') {
