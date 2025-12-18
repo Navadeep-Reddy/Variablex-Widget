@@ -28,7 +28,7 @@ const CheckboxInput = ({ label, options, values, onChange }: CheckboxInputProps)
                                         (e.target as HTMLInputElement).checked ? option.checkedValue : option.uncheckedValue
                                     )
                                 }
-                                className="w-5 h-5 border-2 border-gray-300 rounded cursor-pointer accent-black"
+                                className="w-5 h-5 cursor-pointer appearance-none border border-black bg-white checked:bg-black relative checked:after:content-['✓'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[3px] checked:after:top-[-2px] checked:after:font-bold"
                             />
                             <label
                                 htmlFor={option.id}

@@ -35,7 +35,7 @@ export const InputSection = ({
 }: InputSectionProps) => {
     return (
         <div key={section.id} className="border border-border rounded-lg p-4 bg-card shadow-sm">
-            <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-border">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-border">
                 {section.name}
             </h3>
             <div className="space-y-4">
