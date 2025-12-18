@@ -18,7 +18,7 @@ const TextBlockInput = ({ label, options, value, onChange }: TextBlockInputProps
 
     return (
         <div className="space-y-2">
-            <label className="block text-sm font-medium text-foreground">{label}</label>
+            <label className="block text-sm font-semibold text-foreground">{label}</label>
             <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
                 {options.map((option, idx) => (
                     <button
