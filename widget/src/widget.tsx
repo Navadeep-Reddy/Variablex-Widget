@@ -5,25 +5,29 @@ import './style.css';
 // Export for module usage
 export { CalculatorWidget };
 
-// Auto-initialize from DOM attributes
+// Auto-initialize from script tag attributes
 if (typeof window !== 'undefined') {
-    const containers = document.querySelectorAll('[data-variablex-widget]');
-    containers.forEach(container => {
-        const userId = container.getAttribute('data-user-id');
-        const configurationId = container.getAttribute('data-configuration-id');
-        const apiBaseUrl = container.getAttribute('data-api-base-url');
-        const schemaJson = container.getAttribute('data-schema');
+    // Get the current script tag
+    const currentScript = document.currentScript as HTMLScriptElement;
+
+    if (currentScript) {
+        const configurationId = currentScript.getAttribute('data-configuration-id');
+        const apiBaseUrl = currentScript.getAttribute('data-api-base-url');
+        const schemaJson = currentScript.getAttribute('data-schema');
 
         const schema = schemaJson ? JSON.parse(schemaJson) : undefined;
+
+        // Create a container div and insert it after the script tag
+        const container = document.createElement('div');
+        currentScript.parentNode?.insertBefore(container, currentScript.nextSibling);
 
         render(
             <CalculatorWidget
                 schema={schema}
-                userId={userId || undefined}
                 configurationId={configurationId || undefined}
                 apiBaseUrl={apiBaseUrl || undefined}
             />,
             container
         );
-    });
+    }
 }

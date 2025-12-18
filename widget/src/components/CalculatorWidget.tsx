@@ -12,7 +12,6 @@ import { VariableValues } from '../utils/formulaHelpers';
 
 interface CalculatorWidgetProps {
     schema?: CalculatorSchema;
-    userId?: string;
     configurationId?: string;
     apiBaseUrl?: string;
     responsiveMode?: boolean;
@@ -24,9 +23,8 @@ interface CalculatorWidgetProps {
  */
 export function CalculatorWidget({
     schema,
-    userId,
     configurationId,
-    apiBaseUrl = 'http://localhost:8080',
+    apiBaseUrl = 'http://139.59.2.52:8080',
     responsiveMode = false
 }: CalculatorWidgetProps) {
     const [variableValues, setVariableValues] = useState<VariableValues>({});
@@ -39,9 +37,9 @@ export function CalculatorWidget({
         setVariableValues(prev => ({ ...prev, [name]: value }));
     }, []);
 
-    // Load schema from API if userId and configurationId are provided
+    // Load schema from API if configurationId is provided
     useEffect(() => {
-        if (!schema && userId && configurationId) {
+        if (!schema && configurationId) {
             const fetchSchema = async () => {
                 setLoading(true);
                 setError(null);
@@ -77,7 +75,7 @@ export function CalculatorWidget({
 
             fetchSchema();
         }
-    }, [schema, userId, configurationId, apiBaseUrl]);
+    }, [schema, configurationId, apiBaseUrl]);
 
     const layout = loadedSchema?.layout || [];
     const components = loadedSchema?.components || [];

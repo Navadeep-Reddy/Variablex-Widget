@@ -1,3 +1,5 @@
+import { ResultStyle } from '../utils/styleHelpers';
+
 /**
  * Component type definitions
  */
@@ -70,7 +72,7 @@ export interface CheckboxesComponent extends BaseComponent {
 export interface ResultRegularComponent extends BaseComponent {
     type: 'resultRegular';
     content: string;
-    style: string;
+    style: ResultStyle;
     fontSize?: string;
     textAlign?: string;
 }
