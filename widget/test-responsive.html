@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Responsive Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a2e;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .resize-note {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .narrow-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Widget Responsive Test</h1>
+    <p class="resize-note">Container is max 500px wide - should trigger responsive mode</p>
+
+    <div class="narrow-container">
+        <script src="http://localhost:8888/variablex-widget.umd.js" data-configuration-id="20"></script>
+    </div>
+</body>
+
+</html>

@@ -64,13 +64,13 @@ export const NumberInputRenderer = ({
                         min={min}
                         max={max}
                         step={step}
-                        className="w-full px-3 py-2 pr-7 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary number-input-no-spinner"
+                        className="w-full px-3 py-2 pr-7 border border-solid border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary number-input-no-spinner"
                     />
-                    <div className="absolute right-0 top-0 h-full flex flex-col border-l border-border rounded-r-md overflow-hidden">
+                    <div className="absolute right-0 top-0 h-full flex flex-col border-l border-solid border-border rounded-r-md overflow-hidden">
                         <button
                             type="button"
                             onClick={handleIncrement}
-                            className="flex-1 px-1.5 hover:bg-muted/50 transition-colors border-b border-border flex items-center justify-center"
+                            className="flex-1 px-1.5 hover:bg-muted/50 transition-colors border-b border-solid border-border flex items-center justify-center"
                         >
                             <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
@@ -160,7 +160,7 @@ export const SliderRenderer = ({
             }
           `}</style>
                 </div>
-                <div className="flex items-center gap-1 min-w-[80px] px-3 py-1.5 bg-gray-100 border border-gray-300 rounded-md justify-center">
+                <div className="flex items-center gap-1 min-w-[80px] px-3 py-1.5 bg-gray-100 border border-solid border-gray-300 rounded-md justify-center">
                     {prefix && (
                         <span className="text-sm font-semibold text-gray-900">{prefix}</span>
                     )}

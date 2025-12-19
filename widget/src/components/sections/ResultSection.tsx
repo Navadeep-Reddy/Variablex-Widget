@@ -55,8 +55,8 @@ export const ResultSection = ({
     const lines = section.lines || (section.content ? [{ id: 'legacy', content: section.content, type: 'regular' as const }] : []);
 
     return (
-        <div key={section.id} className="border-2 border-primary/30 rounded-lg p-4 bg-primary/5">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 pb-2 border-b border-primary/20">
+        <div key={section.id} className="border-2 border-solid border-primary/30 rounded-lg p-4 bg-primary/5">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 pb-2 border-b border-solid border-primary/20">
                 {section.name}
             </h3>
             <div className="space-y-3">

@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { CalculatorWidget } from './components/CalculatorWidget';
-import './style.css';
+import styles from './style.css?inline';
 
 // Export for module usage
 export { CalculatorWidget };
@@ -19,7 +19,21 @@ if (typeof window !== 'undefined') {
 
         // Create a container div and insert it after the script tag
         const container = document.createElement('div');
+        container.className = 'variablex-widget-container';
         currentScript.parentNode?.insertBefore(container, currentScript.nextSibling);
+
+        // Create Shadow DOM for style isolation
+        const shadowRoot = container.attachShadow({ mode: 'open' });
+
+        // Inject styles into the shadow DOM (not the document head)
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = styles;
+        shadowRoot.appendChild(styleSheet);
+
+        // Create a wrapper div inside shadow DOM for rendering
+        const widgetWrapper = document.createElement('div');
+        widgetWrapper.className = 'variablex-widget-root';
+        shadowRoot.appendChild(widgetWrapper);
 
         render(
             <CalculatorWidget
@@ -27,7 +41,8 @@ if (typeof window !== 'undefined') {
                 configurationId={configurationId || undefined}
                 apiBaseUrl={apiBaseUrl || undefined}
             />,
-            container
+            widgetWrapper
         );
     }
 }
+

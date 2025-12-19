@@ -25,7 +25,7 @@ const TextBlockInput = ({ label, options, value, onChange }: TextBlockInputProps
                         key={idx}
                         type="button"
                         onClick={() => onChange(option.value)}
-                        className={`px-4 py-3 border-2 rounded text-sm font-medium transition-colors ${idx === selectedIndex
+                        className={`px-4 py-3 border-2 border-solid rounded text-sm font-medium transition-colors ${idx === selectedIndex
                             ? 'border-primary bg-primary text-primary-foreground'
                             : 'border-border bg-background text-foreground hover:border-primary/50'
                             }`}

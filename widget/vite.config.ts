@@ -6,11 +6,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	plugins: [preact(), tailwindcss()],
 	build: {
+		cssCodeSplit: false,
 		lib: {
 			entry: './src/widget.tsx',
 			name: 'VariablexWidget',
 			fileName: (format) => `variablex-widget.${format}.js`,
-			formats: ['es', 'umd']
+			formats: ['es', 'umd'],
+			cssFileName: 'variablex-widget'
 		},
 		rollupOptions: {
 			output: {

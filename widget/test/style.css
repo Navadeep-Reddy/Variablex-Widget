@@ -1,0 +1,59 @@
+/* Aggressive CSS that would break non-Shadow DOM widgets */
+body {
+    font-family: 'Comic Sans MS', cursive !important;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white !important;
+}
+
+/* Override all common elements */
+* {
+    box-sizing: content-box !important;
+    margin: 10px !important;
+    padding: 10px !important;
+}
+
+div {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+    border: 3px solid yellow !important;
+    border-radius: 0 !important;
+}
+
+button {
+    background: purple !important;
+    color: lime !important;
+    font-size: 24px !important;
+    border: 5px dashed orange !important;
+}
+
+input,
+select {
+    background: pink !important;
+    color: blue !important;
+    border: 3px dotted red !important;
+    font-size: 20px !important;
+}
+
+label {
+    color: cyan !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: magenta !important;
+    font-family: 'Impact', fantasy !important;
+    text-decoration: underline !important;
+}
+
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}

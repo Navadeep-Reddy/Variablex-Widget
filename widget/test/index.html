@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Shadow DOM & Responsiveness Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Widget Isolation & Responsiveness Test</h1>
+
+    <div class="container">
+        <h2>Test Container (400px wide)</h2>
+        <p>This container is 400px wide to test responsive mode. The widget should display in single-column layout.</p>
+
+        <h3>Widget Below:</h3>
+        <!-- Widget will be inserted here -->
+        <script src="http://localhost:8888/variablex-widget.umd.js" data-configuration-id="20"></script>
+    </div>
+
+    <div style="margin-top: 50px; padding: 20px; background: rgba(255,255,255,0.9); color: black;">
+        <h3>Test Criteria:</h3>
+        <ul>
+            <li><strong>CSS Isolation:</strong> Widget should NOT be affected by the aggressive page CSS (Comic Sans,
+                red borders, pink inputs, etc.)</li>
+            <li><strong>Responsiveness:</strong> Widget should be in single-column mode (inputs stacked vertically)
+                because container is only 400px wide</li>
+            <li><strong>Expected:</strong> Widget should look clean with proper Poppins font, white backgrounds, and
+                proper styling</li>
+        </ul>
+    </div>
+</body>
+
+</html>

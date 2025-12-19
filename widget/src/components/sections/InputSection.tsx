@@ -34,18 +34,20 @@ export const InputSection = ({
     responsiveMode = false
 }: InputSectionProps) => {
     return (
-        <div key={section.id} className="border border-border rounded-lg p-4 bg-card shadow-sm">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-border">
+        <div key={section.id} className="border border-solid border-border rounded-lg p-4 bg-card shadow-sm">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-solid border-border">
                 {section.name}
             </h3>
             <div className="space-y-4">
                 {section.rows.map((row) => (
-                    <div key={row.id} className="border border-dashed border-border rounded p-3 bg-muted/20">
+                    <div key={row.id} className="border border-solid border-border rounded p-3 bg-muted/20">
                         <div
-                            className="grid gap-4 md:grid-cols-1"
-                            style={row.columns.length > 1 ? {
+                            className="grid gap-4"
+                            style={!responsiveMode && row.columns.length > 1 ? {
                                 gridTemplateColumns: `repeat(${row.columns.length}, 1fr)`
-                            } : undefined}
+                            } : {
+                                gridTemplateColumns: '1fr'
+                            }}
                         >
                             {row.columns.map((column) => (
                                 <div key={column.id} className="space-y-3">

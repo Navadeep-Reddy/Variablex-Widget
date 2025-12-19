@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'preact/hooks';
+import { useState, useCallback, useEffect, useRef } from 'preact/hooks';
 import { CalculatorSchema } from '../types/schema.types';
 import { ComponentRenderer } from './renderers/ComponentRenderer';
 import { InputSection } from './sections/InputSection';
@@ -31,6 +31,32 @@ export function CalculatorWidget({
     const [loadedSchema, setLoadedSchema] = useState<CalculatorSchema | null>(schema || null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isNarrowContainer, setIsNarrowContainer] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Detect container width for responsive behavior
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        // In Shadow DOM, we need to find the actual host element
+        // The host element is the container that has the real width constraint
+        const shadowRoot = container.getRootNode() as ShadowRoot;
+        const hostElement = shadowRoot?.host as HTMLElement || container;
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                const width = entry.contentRect.width;
+                setIsNarrowContainer(width < 768);
+            }
+        });
+
+        resizeObserver.observe(hostElement);
+        return () => resizeObserver.disconnect();
+    }, []);
+
+    // Combine prop and auto-detected responsive mode
+    const effectiveResponsiveMode = responsiveMode || isNarrowContainer;
 
     // Update variable value
     const updateVariable = useCallback((name: string, value: number) => {
@@ -141,7 +167,7 @@ export function CalculatorWidget({
     }
 
     return (
-        <div className="h-full overflow-y-auto bg-transparent">
+        <div ref={containerRef} className="h-full overflow-y-auto bg-transparent">
             <div className="max-w-4xl mx-auto p-8 space-y-6">
                 {layout.map((section: any) => {
                     if (section.type === 'input') {
@@ -151,7 +177,7 @@ export function CalculatorWidget({
                                 section={section}
                                 components={components}
                                 renderComponent={renderComponent}
-                                responsiveMode={responsiveMode}
+                                responsiveMode={effectiveResponsiveMode}
                             />
                         );
                     }

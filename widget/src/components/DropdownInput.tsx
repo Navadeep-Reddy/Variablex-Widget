@@ -41,7 +41,7 @@ const DropdownInput = ({ label, options, value, onChange }: DropdownInputProps) 
                 <button
                     type="button"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-full px-4 py-2.5 pr-10 border-2 border-border rounded-lg bg-background text-foreground font-medium cursor-pointer transition-all duration-200 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-left"
+                    className="w-full px-4 py-2.5 pr-10 border-2 border-solid border-border rounded-lg bg-background text-foreground font-medium cursor-pointer transition-all duration-200 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-left"
                 >
                     {selectedOption ? selectedOption.label : 'Select an option'}
                 </button>
@@ -58,7 +58,7 @@ const DropdownInput = ({ label, options, value, onChange }: DropdownInputProps) 
                 </div>
 
                 {isOpen && (
-                    <div className="absolute z-50 w-full mt-1 bg-white border-2 border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    <div className="absolute z-50 w-full mt-1 bg-white border-2 border-solid border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
                         {options.map((option, idx) => (
                             <div
                                 key={idx}
