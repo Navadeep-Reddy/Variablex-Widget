@@ -6,6 +6,96 @@
 
 ## 📋 Pending Changes
 
+### [Date: 2025-12-26] - Bold and Italic Text Styling
+
+**Main App Files Modified:**
+- `client/src/store/slices/componentHelpers.ts`
+- `client/src/components/builder/preview/renderers/ComponentRenderer.tsx`
+- `client/src/components/builder/preview/renderers/ResultRenderer.tsx`
+
+**Widget Files to Update:**
+- `widget/src/components/renderers/ComponentRenderer.tsx`
+- `widget/src/components/renderers/ResultRenderer.tsx`
+
+**Description:**
+Added bold and italic toggle options for text display, regular result, and conditional result components. When enabled, these apply `font-bold` and/or `italic` CSS classes to the content.
+
+**Implementation Steps:**
+1. Add `bold` and `italic` props to component data interfaces
+2. In renderers, compute `boldClass` and `italicClass` based on component props
+3. Apply classes to the content div/paragraph
+
+**Code Change:**
+```tsx
+// In ComponentRenderer.tsx - text case:
+const boldClass = comp.bold ? 'font-bold' : '';
+const italicClass = comp.italic ? 'italic' : '';
+
+<p className={`${fontSizeClass} ${textAlignClass} ${boldClass} ${italicClass} whitespace-pre-wrap`}>
+    {comp.text || 'Text Display'}
+</p>
+
+// In ResultRenderer.tsx - RegularResult and ConditionalResult:
+// Add to props interface:
+bold?: boolean;
+italic?: boolean;
+
+// In component function:
+const boldClass = bold ? 'font-bold' : '';
+const italicClass = italic ? 'italic' : '';
+
+// Apply to content div:
+<div className={`py-2 rounded ${styleClass} ${fontSizeClass} ${textAlignClass} ${boldClass} ${italicClass} whitespace-pre-wrap`}>
+```
+
+**Notes:**
+- Both bold and italic can be enabled simultaneously
+- Default values are `false` for both properties
+- Classes are Tailwind: `font-bold` and `italic`
+
+---
+
+### [Date: 2025-12-25] - Preserve Line Breaks in Text and Result Content
+
+**Main App Files Modified:**
+- `client/src/components/builder/preview/renderers/ComponentRenderer.tsx`
+- `client/src/components/builder/preview/renderers/ResultRenderer.tsx`
+
+**Widget Files to Update:**
+- `widget/src/components/renderers/ComponentRenderer.tsx`
+- `widget/src/components/renderers/ResultRenderer.tsx`
+
+**Description:**
+Added `whitespace-pre-wrap` CSS class to text display, regular result, and conditional result components. This preserves line breaks entered in the textarea settings, allowing multi-line content to render correctly in preview mode.
+
+**Implementation Steps:**
+1. In `ComponentRenderer.tsx` - text case: Add `whitespace-pre-wrap` to the paragraph element
+2. In `ResultRenderer.tsx` - RegularResult: Add `whitespace-pre-wrap` to content div
+3. In `ResultRenderer.tsx` - ConditionalResult: Add `whitespace-pre-wrap` to message div
+
+**Code Change:**
+```tsx
+// Text Display in ComponentRenderer.tsx
+// Before:
+<p className={`${fontSizeClass} ${textAlignClass}`}>{comp.text || 'Text Display'}</p>
+// After:
+<p className={`${fontSizeClass} ${textAlignClass} whitespace-pre-wrap`}>{comp.text || 'Text Display'}</p>
+
+// RegularResult in ResultRenderer.tsx
+// Before:
+<div className={`py-2 rounded ${styleClass} ${fontSizeClass} ${textAlignClass}`}>
+// After:
+<div className={`py-2 rounded ${styleClass} ${fontSizeClass} ${textAlignClass} whitespace-pre-wrap`}>
+
+// ConditionalResult in ResultRenderer.tsx - same pattern
+```
+
+**Notes:**
+- Essential for displaying multi-line content like paragraphs or formatted text
+- Works with any text entered using Enter/Return key in the textarea
+
+---
+
 ### [Date: 2025-12-23] - Row-by-Row Component Alignment Across Columns
 
 **Main App Files Modified:**
