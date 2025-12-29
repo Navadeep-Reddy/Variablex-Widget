@@ -4,11 +4,12 @@ This document outlines the changes made to the main Variablex application to imp
 
 ## Overview
 
-The color system uses 4 color roles:
+The color system uses 5 color roles:
 - **primary**: Brand color for interactive elements (slider fills, checkbox/radio checked states)
 - **content**: Text color for labels and body text  
 - **neutral**: Border color for inputs and unfilled slider tracks
 - **contrast**: Color for text/icons on primary-colored elements (checkmarks)
+- **background**: Section card background color (InputSection, ResultSection cards)
 
 ## Files to Create
 
@@ -22,6 +23,7 @@ export interface ColorTheme {
   content: string;
   neutral: string;
   contrast: string;
+  background: string;
 }
 
 export const defaultColorTheme: ColorTheme = {
@@ -29,6 +31,7 @@ export const defaultColorTheme: ColorTheme = {
   content: '#1f2937',
   neutral: '#d1d5db',
   contrast: '#ffffff',
+  background: '#ffffff', // White for section cards
 };
 
 export const isValidColorTheme = (obj: unknown): obj is ColorTheme => {
@@ -38,7 +41,8 @@ export const isValidColorTheme = (obj: unknown): obj is ColorTheme => {
     typeof theme.primary === 'string' &&
     typeof theme.content === 'string' &&
     typeof theme.neutral === 'string' &&
-    typeof theme.contrast === 'string'
+    typeof theme.contrast === 'string' &&
+    typeof theme.background === 'string'
   );
 };
 
@@ -100,8 +104,30 @@ Wrap the widget content with the provider:
 
 ```tsx
 <ColorThemeProvider theme={colorTheme}>
-  {/* Widget content */}
+  <div style={{ backgroundColor: colorTheme.background }}>
+    {/* Widget content */}
+  </div>
 </ColorThemeProvider>
+```
+
+**Apply background color to section cards:**
+
+```tsx
+// In InputSection.tsx and ResultSection.tsx
+import { useColorTheme } from '../context/ColorThemeContext';
+
+const Section = () => {
+  const theme = useColorTheme();
+  
+  return (
+    <div 
+      className="border rounded-lg p-4"
+      style={{ backgroundColor: theme.background }}
+    >
+      {/* section content */}
+    </div>
+  );
+};
 ```
 
 ---
@@ -215,7 +241,7 @@ import { useColorTheme } from '../context/ColorThemeContext';
 
 const Component = () => {
   const theme = useColorTheme();
-  // Use theme.primary, theme.content, theme.neutral, theme.contrast
+  // Use theme.primary, theme.content, theme.neutral, theme.contrast, theme.background
 };
 ```
 
